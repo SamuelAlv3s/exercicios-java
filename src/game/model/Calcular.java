@@ -62,7 +62,7 @@ public class Calcular {
     public String toString(){
         String op;
         if(this.getOperacao() == 0){
-            op = "Somar"
+            op = "Somar";
         } else if(this.getOperacao() == 1){
             op = "Diminuir";
         } else if(this.getOperacao() == 2){
