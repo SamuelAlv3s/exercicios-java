@@ -1,6 +1,6 @@
-package Mercado.model;
+package mercado.model;
 
-import Mercado.helper.Utils;
+import mercado.helper.Utils;
 
 public class Produto {
 

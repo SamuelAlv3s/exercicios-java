@@ -1,7 +1,7 @@
-package Mercado.view;
+package mercado.view;
 
-import Mercado.helper.Utils;
-import Mercado.model.Produto;
+import mercado.helper.Utils;
+import mercado.model.Produto;
 
 import java.util.*;
 
