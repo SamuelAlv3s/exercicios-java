@@ -8,8 +8,8 @@ public class Conta {
 
     private int numero;
     private Cliente cliente;
-    private double saldo;
-    private double limite;
+    private double saldo = 0.0;
+    private double limite = 0.0;
     private double saldoTotal;
 
     public Conta(Cliente cliente) {
@@ -45,6 +45,7 @@ public class Conta {
 
     public void setLimite(double limite) {
         this.limite = limite;
+        this.atualizaSaldoTotal();
     }
 
     public double getSaldoTotal() {
@@ -79,7 +80,7 @@ public class Conta {
                 System.out.println("Saque efetuado com sucesso!");
             } else{
                 Double restante = this.getSaldo() - valor;
-                this.limite = this.getLimite() - restante;
+                this.limite = this.getLimite() + restante;
                 this.atualizaSaldoTotal();
                 System.out.println("Saque efetuado com sucesso!");
             }
@@ -88,25 +89,26 @@ public class Conta {
         }
     }
 
-    public void transferir(Conta destino, Double valor){
-        if(valor > 0 && this.getSaldoTotal() >= valor){
-            if(this.getSaldo() >= valor){
+    public void transferir(Conta destino, Double valor) {
+        if (valor > 0 && this.getSaldoTotal() >= valor) {
+            if (this.getSaldo() >= valor) {
                 this.saldo = this.getSaldo() - valor;
                 destino.saldo = destino.getSaldo() + valor;
                 this.atualizaSaldoTotal();
                 destino.atualizaSaldoTotal();
                 System.out.println("Transferência realizada com sucesso!");
-        } else{
-            Double restante = this.getSaldo() - valor;
-            this.limite = this.getLimite() - valor;
-            this.saldo = 0.0;
-            destino.saldo = destino.getSaldo() + valor;
-            this.atualizaSaldoTotal();
-            destino.atualizaSaldoTotal();
+            } else {
+                Double restante = this.getSaldo() - valor;
+                this.limite = this.getLimite() + restante;
+                this.saldo = 0.0;
+                destino.saldo = destino.getSaldo() + valor;
+                this.atualizaSaldoTotal();
+                destino.atualizaSaldoTotal();
                 System.out.println("Transferência realizada com sucesso!");
             }
-    } else{
+        } else {
             System.out.println("Transferência não realizada. Tente Novamente.");
         }
 
+    }
 }

@@ -34,4 +34,12 @@ public class Utils {
             System.out.println("Erro ao pausar por " + segundos + " segundos");
         }
     }
+
+    public static Date stringParaDate(String data){
+        try{
+            return Utils.sdf.parse(data);
+        } catch (ParseException e){
+            return null;
+        }
+    }
 }
