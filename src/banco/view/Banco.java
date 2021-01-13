@@ -26,7 +26,7 @@ public class Banco {
         System.out.println("-----------"+ Banco.nome + "-------------");
         System.out.println("----------------------------------");
 
-        System.out.println("Selecione uma opçãono menu: ");
+        System.out.println("Selecione uma opção no menu: ");
         System.out.println("1 - Criar Conta");
         System.out.println("2 - Efetuar Saque");
         System.out.println("3 - Efetuar Depósito");
@@ -59,11 +59,11 @@ public class Banco {
                 Banco.listarContas();
                 break;
             case 6:
-                System.out.println("Atpe a próxima");
+                System.out.println("Até a próxima");
                 Utils.pausar(2);
                 System.exit(0);
             default:
-                System.out.println("Informe uma op~]ao válida");
+                System.out.println("Informe uma opção válida");
                 Utils.pausar(2);
                 break;
         }
@@ -102,54 +102,54 @@ public class Banco {
 
     public static void efetuarSaque(){
         System.out.println("Informe o número da conta: ");
-        int numero = Banco.teclado.nextInt();
+        int numero = Integer.parseInt(Banco.teclado.nextLine());
 
         Conta conta = Banco.buscarContaPorNumero(numero);
 
         if(conta != null){
             System.out.println("Informe um valor para saque: ");
-            Double valor = Banco.teclado.nextDouble();
+            Double valor = Double.parseDouble(Banco.teclado.nextLine().replace(",", "."));
             conta.sacar(valor);
         } else{
             System.out.println("Não foi encontrada a conta n° " + numero);
         }
-        Utils.pausar(3);
+        Utils.pausar(2);
         Banco.menu();
     }
 
     public static void efetuarDeposito(){
         System.out.println("Informe o número da conta: ");
-        int numero = Banco.teclado.nextInt();
+        int numero = Integer.parseInt(Banco.teclado.nextLine());
 
         Conta conta = Banco.buscarContaPorNumero(numero);
 
         if(conta != null){
             System.out.println("Informe um valor para depósito: ");
-            Double valor = Banco.teclado.nextDouble();
+            Double valor = Double.parseDouble(Banco.teclado.nextLine().replace(",", "."));
             conta.depositar(valor);
         } else{
             System.out.println("Não foi encontrada a conta n° " + numero);
         }
 
-        Utils.pausar(3);
+        Utils.pausar(2);
         Banco.menu();
     }
 
     public static void efetuarTransferencia(){
         System.out.println("Informe o número da sua conta: ");
-        int numero_o = Banco.teclado.nextInt();
+        int numero_o = Integer.parseInt(Banco.teclado.nextLine());
 
         Conta conta_o = Banco.buscarContaPorNumero(numero_o);
 
         if(conta_o != null){
             System.out.println("Informe o número da conta destino: ");
-            int numero_d = Banco.teclado.nextInt();
+            int numero_d = Integer.parseInt(Banco.teclado.nextLine());
 
             Conta conta_d = Banco.buscarContaPorNumero(numero_d);
 
             if(conta_d != null){
                 System.out.println("Informe o valor da transferência: ");
-                Double valor = Banco.teclado.nextDouble();
+                Double valor = Double.parseDouble(Banco.teclado.nextLine().replace(",", "."));
 
                 conta_o.transferir(conta_d, valor);
             } else{
@@ -159,7 +159,7 @@ public class Banco {
             System.out.println("Não foi encontrada a conta n° " + numero_o);
         }
 
-        Utils.pausar(3);
+        Utils.pausar(2);
         Banco.menu();
     }
 
@@ -171,12 +171,12 @@ public class Banco {
                 System.out.println();
                 Utils.pausar(1);
             }
-            System.out.println();
         } else{
             System.out.println("Não existem contas cadastradas ainda.");
-            Utils.pausar(3);
+            Utils.pausar(2);
             Banco.menu();
         }
+        Banco.menu();
     }
 
     public static Conta buscarContaPorNumero(int numero){
